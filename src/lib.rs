@@ -1,5 +1,5 @@
+use anyhow::Result;
 use console::Term;
-use std::io::Result;
 
 /// A `View` is an encapsulated piece of ui that can be written to the terminal.
 ///
@@ -119,7 +119,8 @@ pub trait WriteLineBreak {
 
 impl WriteLineBreak for Term {
     fn write_line_break(&self) -> Result<()> {
-        self.write_line("\n")
+        self.write_line("\n")?;
+        Ok(())
     }
 }
 
@@ -134,6 +135,7 @@ pub trait Clear {
 
 impl Clear for Term {
     fn clear(&self) -> Result<()> {
-        self.clear_last_lines(999)
+        self.clear_last_lines(999)?;
+        Ok(())
     }
 }
