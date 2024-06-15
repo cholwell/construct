@@ -119,7 +119,7 @@ pub trait WriteLineBreak {
 
 impl WriteLineBreak for Term {
     fn write_line_break(&self) -> Result<()> {
-        self.write_line("\n")?;
+        self.write_str("\n")?;
         Ok(())
     }
 }
