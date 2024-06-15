@@ -1,1 +1,3 @@
 # construct
+
+console + struct = construct
