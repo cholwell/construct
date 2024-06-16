@@ -20,7 +20,7 @@ use console::Term;
 /// ```
 pub trait View {
     fn title(&self) -> String;
-    fn content(self, terminal: &Term, construct: &Construct) -> Result<()>;
+    fn content(&self, terminal: &Term, construct: &Construct) -> Result<()>;
 }
 
 /// `Construct` provides simple view based routing for the terminal.
@@ -59,13 +59,13 @@ impl Construct {
     /// let foo: View = Foo::new();
     /// construct.view(foo)
     /// ```
-    pub fn view(self, view: impl View) -> Result<()> {
+    pub fn view(&self, view: impl View) -> Result<()> {
         self.terminal.clear()?;
         if let Some(l) = &self.logo {
             self.terminal.write_line(&l)?;
         }
         self.terminal.write_line(&view.title())?;
-        view.content(&self.terminal, &self)
+        view.content(&self.terminal, self)
     }
 }
 
