@@ -20,7 +20,7 @@ use console::Term;
 /// ```
 pub trait View {
     fn title(&self) -> String;
-    fn content(&self, terminal: &Term, construct: &Construct) -> Result<()>;
+    fn content(self, terminal: &Term, construct: &Construct) -> Result<()>;
 }
 
 /// `Construct` provides simple view based routing for the terminal.
