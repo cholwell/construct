@@ -59,13 +59,13 @@ impl Construct {
     /// let foo: View = Foo::new();
     /// construct.view(foo)
     /// ```
-    pub fn view(&self, view: impl View) -> Result<()> {
+    pub fn view(self, view: impl View) -> Result<()> {
         self.terminal.clear()?;
         if let Some(l) = &self.logo {
             self.terminal.write_line(&l)?;
         }
         self.terminal.write_line(&view.title())?;
-        view.content(&self.terminal, self)
+        view.content(&self.terminal, &self)
     }
 }
 
