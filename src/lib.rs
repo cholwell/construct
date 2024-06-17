@@ -59,7 +59,7 @@ impl Construct {
     /// let foo: View = Foo::new();
     /// construct.view(foo)
     /// ```
-    pub fn view(&self, view: impl View) -> Result<()> {
+    pub fn navigate(&self, view: impl View) -> Result<()> {
         self.terminal.clear()?;
         if let Some(l) = &self.logo {
             self.terminal.write_line(&l)?;
@@ -83,13 +83,13 @@ pub struct ConstructBuilder {
 }
 
 impl ConstructBuilder {
-    /// Add specific terminal
+    /// Set terminal
     pub fn with_terminal(mut self, terminal: Term) -> ConstructBuilder {
         self.terminal = Some(terminal);
         self
     }
 
-    /// Add a logo
+    /// Set logo
     pub fn with_logo(mut self, logo: String) -> ConstructBuilder {
         self.logo = Some(logo);
         self
